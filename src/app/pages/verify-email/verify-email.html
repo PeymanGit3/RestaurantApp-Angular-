@@ -1,0 +1,32 @@
+<div class="verify-container">
+  <div class="verify-card">
+    <h2>📧 Email Doğrulama</h2>
+    <p>Emailinize gelen doğrulama kodunu girin</p>
+
+    <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Doğrulama Kodu</label>
+        <input
+          type="text"
+          formControlName="code"
+          placeholder="Doğrulama kodunuz"
+        />
+        <span class="error" *ngIf="verifyForm.get('code')?.invalid && verifyForm.get('code')?.touched">
+          Kod gerekli
+        </span>
+      </div>
+
+      <div class="success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Doğrulanıyor...' : 'Doğrula' }}
+      </button>
+    </form>
+  </div>
+</div>

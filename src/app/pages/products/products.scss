@@ -1,0 +1,149 @@
+.products-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .filter-section {
+    width: 250px;
+    min-width: 250px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+
+    h3 {
+      color: #1a1a2e;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: none;
+        border-color: #e94560;
+      }
+    }
+
+    .price-range {
+      display: flex;
+      gap: 0.5rem;
+
+      input {
+        width: 50%;
+      }
+    }
+
+    .vegetarian-check {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      color: #333;
+
+      input {
+        width: auto;
+        margin: 0;
+      }
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        flex: 1;
+        padding: 0.6rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+
+        &.btn-apply {
+          background-color: #e94560;
+          color: white;
+
+          &:hover {
+            background-color: #c73652;
+          }
+        }
+
+        &.btn-reset {
+          background-color: #1a1a2e;
+          color: white;
+
+          &:hover {
+            background-color: #16213e;
+          }
+        }
+      }
+    }
+  }
+
+  .products-section {
+    flex: 1;
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: #888;
+      font-size: 1.1rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .no-products {
+      text-align: center;
+      padding: 3rem;
+      color: #888;
+      font-size: 1.1rem;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+
+      button {
+        padding: 0.6rem 1.2rem;
+        background-color: #e94560;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover:not(:disabled) {
+          background-color: #c73652;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      span {
+        color: #333;
+        font-weight: 500;
+      }
+    }
+  }
+}

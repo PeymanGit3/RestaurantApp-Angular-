@@ -1,0 +1,52 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Kayıt Ol</h2>
+    <p>Yeni hesap oluşturun</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Ad</label>
+        <input type="text" formControlName="firstName" placeholder="Adınız" />
+        <span class="error" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+          Ad gerekli
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Soyad</label>
+        <input type="text" formControlName="lastName" placeholder="Soyadınız" />
+        <span class="error" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+          Soyad gerekli
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="email@example.com" />
+        <span class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Geçerli bir email girin
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Şifre</label>
+        <input type="password" formControlName="password" placeholder="Şifreniz" />
+        <span class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          Şifre en az 6 karakter olmalı
+        </span>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Kayıt yapılıyor...' : 'Kayıt Ol' }}
+      </button>
+    </form>
+
+    <p class="login-link">
+      Zaten hesabınız var mı? <a routerLink="/login">Giriş Yap</a>
+    </p>
+  </div>
+</div>
