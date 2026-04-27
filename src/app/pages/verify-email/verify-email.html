@@ -5,11 +5,23 @@
 
     <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="email@example.com"
+        />
+        <span class="error" *ngIf="verifyForm.get('email')?.invalid && verifyForm.get('email')?.touched">
+          Geçerli bir email girin
+        </span>
+      </div>
+
+      <div class="form-group">
         <label>Doğrulama Kodu</label>
         <input
           type="text"
           formControlName="code"
-          placeholder="Doğrulama kodunuz"
+          placeholder="Emailinize gelen kod"
         />
         <span class="error" *ngIf="verifyForm.get('code')?.invalid && verifyForm.get('code')?.touched">
           Kod gerekli

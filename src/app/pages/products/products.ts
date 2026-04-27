@@ -37,27 +37,27 @@ export class ProductsComponent implements OnInit {
     this.loadProducts();
   }
 
-  loadCategories(): void {
-    this.productService.getCategories().subscribe({
-      next: (data) => this.categories = data,
-      error: (err) => console.error(err)
-    });
-  }
+loadCategories(): void {
+  this.productService.getCategories().subscribe({
+    next: (data) => this.categories = data.data,
+    error: (err) => console.error(err)
+  });
+}
 
-  loadProducts(): void {
-    this.isLoading = true;
-    this.productService.filterProducts(this.filter).subscribe({
-      next: (data) => {
-        this.products = data.items;
-        this.totalCount = data.totalCount;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.isLoading = false;
-      }
-    });
-  }
+loadProducts(): void {
+  this.isLoading = true;
+  this.productService.filterProducts(this.filter).subscribe({
+    next: (data) => {
+      this.products = data.data.products;
+      this.totalCount = data.data.totalCount || 0;
+      this.isLoading = false;
+    },
+    error: (err) => {
+      console.error(err);
+      this.isLoading = false;
+    }
+  });
+}
 
   applyFilter(): void {
     this.filter.page = 1;

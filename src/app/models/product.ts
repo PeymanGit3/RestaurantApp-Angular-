@@ -3,11 +3,11 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
-  categoryId: number;
-  categoryName: string;
-  isVegetarian: boolean;
+  image: string;
   spiciness: number;
+  vegeterian: boolean;
+  rate: number;
+  canDelete?: boolean;
 }
 
 export interface ProductFilter {
@@ -22,8 +22,8 @@ export interface ProductFilter {
 }
 
 export interface ProductResponse {
-  items: Product[];
-  totalCount: number;
-  page: number;
-  take: number;
+  data: {
+    products: Product[];
+    totalCount?: number;
+  };
 }

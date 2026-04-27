@@ -1,5 +1,10 @@
 export interface Category {
   id: number;
   name: string;
-  imageUrl?: string;
+  canDelete?: boolean;
+}
+
+export interface CategoryResponse {
+  data: Category[];
+  meta: any;
 }

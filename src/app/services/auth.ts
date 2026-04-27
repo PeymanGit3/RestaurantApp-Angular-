@@ -54,8 +54,8 @@ export class AuthService {
     );
   }
 
-  verifyEmail(code: string): Observable<any> {
-  return this.http.put(`${this.baseUrl}/verify-email`, { code });
+verifyEmail(data: { email: string; code: string }): Observable<any> {
+  return this.http.put(`${this.baseUrl}/verify-email`, data);
 }
 }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product, ProductFilter, ProductResponse } from '../models/product';
-import { Category } from '../models/category';
+import { Category, CategoryResponse } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class ProductService {
     return this.http.get<ProductResponse>(`${this.baseUrl}/products/filter`, { params });
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.baseUrl}/categories`);
+  getCategories(): Observable<CategoryResponse> {
+    return this.http.get<CategoryResponse>(`${this.baseUrl}/categories`);
   }
 }

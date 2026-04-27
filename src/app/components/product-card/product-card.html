@@ -1,17 +1,16 @@
 <div class="product-card">
   <div class="product-image">
-    <img [src]="product.imageUrl" [alt]="product.name" />
-    <span class="vegetarian-badge" *ngIf="product.isVegetarian">🌱 Vejetaryen</span>
+    <img [src]="product.image" [alt]="product.name" />
+    <span class="vegetarian-badge" *ngIf="product.vegeterian">🌱 Vejetaryen</span>
   </div>
 
   <div class="product-info">
     <h3>{{ product.name }}</h3>
-    <p class="category">{{ product.categoryName }}</p>
     <p class="description">{{ product.description }}</p>
     <p class="spiciness" *ngIf="product.spiciness > 0">{{ getSpiciness() }}</p>
 
     <div class="product-footer">
-      <span class="price">{{ product.price | currency:'TRY':'₺' }}</span>
+      <span class="price">{{ product.price | currency:'USD':'$' }}</span>
       <button (click)="onAddToCart()">Sepete Ekle</button>
     </div>
   </div>

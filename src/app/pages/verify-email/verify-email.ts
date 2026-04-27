@@ -23,6 +23,7 @@ export class VerifyEmailComponent {
     private router: Router
   ) {
     this.verifyForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
       code: ['', Validators.required]
     });
   }
@@ -31,7 +32,7 @@ export class VerifyEmailComponent {
     if (this.verifyForm.invalid) return;
 
     this.isLoading = true;
-    this.authService.verifyEmail(this.verifyForm.value.code).subscribe({
+    this.authService.verifyEmail(this.verifyForm.value).subscribe({
       next: () => {
         this.successMessage = 'Email başarıyla doğrulandı!';
         this.errorMessage = '';
