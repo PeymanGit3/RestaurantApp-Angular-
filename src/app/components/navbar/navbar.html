@@ -1,21 +1,33 @@
 <nav class="navbar">
   <div class="navbar-brand">
-    <a routerLink="/">🍔 Restaurant</a>
+    <a routerLink="/">BiteHub</a>
   </div>
 
   <div class="navbar-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ana Sayfa</a>
-    <a routerLink="/products" routerLinkActive="active">Menü</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <button class="nav-btn"><i class="fa-solid fa-house"></i> Ana Sayfa</button>
+    </a>
+    <a routerLink="/products" routerLinkActive="active">
+      <button class="nav-btn"><i class="fa-solid fa-bars"></i> Menü</button>
+    </a>
 
     <ng-container *ngIf="isLoggedIn; else guestLinks">
-      <a routerLink="/cart" routerLinkActive="active">🛒 Sepet</a>
-      <a routerLink="/profile" routerLinkActive="active">👤 Profil</a>
-      <button (click)="logout()">Çıkış</button>
+      <a routerLink="/cart" routerLinkActive="active">
+        <button class="nav-btn"><i class="fa-solid fa-cart-shopping"></i> Sepet</button>
+      </a>
+      <a routerLink="/profile" routerLinkActive="active">
+        <button class="nav-btn"><i class="fa-solid fa-user"></i> Profil</button>
+      </a>
+      <button class="nav-btn logout-btn" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i> Çıkış</button>
     </ng-container>
 
     <ng-template #guestLinks>
-      <a routerLink="/login" routerLinkActive="active">Giriş</a>
-      <a routerLink="/register" routerLinkActive="active">Kayıt Ol</a>
+      <a routerLink="/login" routerLinkActive="active">
+        <button class="nav-btn"><i class="fa-solid fa-right-to-bracket"></i> Giriş</button>
+      </a>
+      <a routerLink="/register" routerLinkActive="active">
+        <button class="nav-btn"><i class="fa-solid fa-pen-to-square"></i> Kayıt Ol</button>
+      </a>
     </ng-template>
   </div>
 </nav>

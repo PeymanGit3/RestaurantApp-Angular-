@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,10 +8,18 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #e94560 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
   color: #333;
 }
 
 html, body {
   height: 100%;
+}
+
+/* Navbar fixed olduğu için sayfa içeriğini aşağı it */
+app-root {
+  display: block;
+  padding-top: 70px;
 }

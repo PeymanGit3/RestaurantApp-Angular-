@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart';
 import { Cart, CartItem } from '../../models/cart';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cart.html',
   styleUrl: './cart.scss'
 })
 export class CartComponent implements OnInit {
-  cart: Cart = { items: [], totalAmount: 0 };
+  cart: Cart = { items: [], totalPrice: 0, totalItems: 0 };
   isLoading = false;
 
   constructor(
@@ -27,8 +27,8 @@ export class CartComponent implements OnInit {
   loadCart(): void {
     this.isLoading = true;
     this.cartService.getCart().subscribe({
-      next: (data) => {
-        this.cart = data;
+      next: (response) => {
+        this.cart = response.data;
         this.isLoading = false;
       },
       error: (err) => {

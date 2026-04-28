@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user';
-import { User } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +11,13 @@ import { User } from '../../models/user';
   styleUrl: './profile.scss'
 })
 export class ProfileComponent implements OnInit {
-  user: User | null = null;
   profileForm: FormGroup;
+  passwordForm: FormGroup;
   isLoading = false;
-  successMessage = '';
-  errorMessage = '';
+  profileSuccess = '';
+  profileError = '';
+  passwordSuccess = '';
+  passwordError = '';
 
   constructor(
     private userService: UserService,
@@ -27,6 +28,12 @@ export class ProfileComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     });
+
+this.passwordForm = this.fb.group({
+  oldPassword: ['', Validators.required],
+  newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])/)]],
+  confirmPassword: ['', Validators.required]
+});
   }
 
   ngOnInit(): void {
@@ -36,12 +43,11 @@ export class ProfileComponent implements OnInit {
   loadProfile(): void {
     this.isLoading = true;
     this.userService.getProfile().subscribe({
-      next: (data) => {
-        this.user = data;
+      next: (response: any) => {
         this.profileForm.patchValue({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email
         });
         this.isLoading = false;
       },
@@ -52,17 +58,33 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  onProfileSubmit(): void {
     if (this.profileForm.invalid) return;
 
     this.userService.editProfile(this.profileForm.value).subscribe({
       next: () => {
-        this.successMessage = 'Profil başarıyla güncellendi!';
-        this.errorMessage = '';
+        this.profileSuccess = 'Profil başarıyla güncellendi!';
+        this.profileError = '';
       },
       error: () => {
-        this.errorMessage = 'Güncelleme başarısız!';
-        this.successMessage = '';
+        this.profileError = 'Güncelleme başarısız!';
+        this.profileSuccess = '';
+      }
+    });
+  }
+
+  onPasswordSubmit(): void {
+    if (this.passwordForm.invalid) return;
+
+    this.userService.changePassword(this.passwordForm.value).subscribe({
+      next: () => {
+        this.passwordSuccess = 'Şifre başarıyla değiştirildi!';
+        this.passwordError = '';
+        this.passwordForm.reset();
+      },
+      error: () => {
+        this.passwordError = 'Şifre değiştirme başarısız!';
+        this.passwordSuccess = '';
       }
     });
   }

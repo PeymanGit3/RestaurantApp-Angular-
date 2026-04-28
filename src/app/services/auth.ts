@@ -15,15 +15,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(data: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/login`, data).pipe(
-      tap(response => {
-        localStorage.setItem('accessToken', response.accessToken);
-        localStorage.setItem('refreshToken', response.refreshToken);
-        this.isLoggedInSubject.next(true);
-      })
-    );
-  }
+login(data: LoginRequest): Observable<any> {
+  return this.http.post<any>(`${this.baseUrl}/login`, data).pipe(
+    tap(response => {
+      localStorage.setItem('accessToken', response.data.accessToken);
+      localStorage.setItem('refreshToken', response.data.refreshToken);
+      this.isLoggedInSubject.next(true);
+    })
+  );
+}
 
   register(data: RegisterRequest): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, data);

@@ -1,29 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .home-container {
   .hero {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #e94560 100%);
-    min-height: calc(100vh - 70px);
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 2rem;
 
-    .hero-content {
+    .hero-content { 
       color: white;
 
-      h1 {
-        font-size: 3.5rem;
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    white 0%,
+    white 40%,
+    #e94560 90%,
+    white 60%,
+    white 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: laserFlow 3.5s linear infinite;
+}
+
+      .tagline {
+        font-size: 3.4rem;
+        color: #ffd6de;
         margin-bottom: 1rem;
-        font-weight: bold;
+        font-weight: 300;
+        letter-spacing: 2px;
       }
 
-      p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
+      .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
         opacity: 0.9;
         max-width: 500px;
         margin-left: auto;
         margin-right: auto;
+        line-height: 1.6;
       }
 
       .hero-buttons {
@@ -63,6 +87,14 @@
         }
       }
     }
+    @keyframes laserFlow {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
   }
 
   .features {

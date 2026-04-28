@@ -1,16 +1,28 @@
+export interface CartProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  spiciness: number;
+  vegeterian: boolean;
+  rate: number;
+}
+
 export interface CartItem {
   id: number;
-  productId: number;
-  productName: string;
-  productImageUrl: string;
-  price: number;
   quantity: number;
-  totalPrice: number;
+  product: CartProduct;
 }
 
 export interface Cart {
+  totalItems: number;
+  totalPrice: number;
   items: CartItem[];
-  totalAmount: number;
+}
+
+export interface CartResponse {
+  data: Cart;
 }
 
 export interface AddToCartRequest {

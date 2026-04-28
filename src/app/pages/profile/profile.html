@@ -1,10 +1,10 @@
 <div class="profile-container">
   <div class="profile-card">
-    <h2>👤 Profilim</h2>
+    <h2><i class="fa-solid fa-user"></i> Profilim</h2>
 
     <div class="loading" *ngIf="isLoading">Yükleniyor...</div>
 
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()" *ngIf="!isLoading">
       <div class="form-group">
         <label>Ad</label>
         <input type="text" formControlName="firstName" />
@@ -29,17 +29,44 @@
         </span>
       </div>
 
-      <div class="success-message" *ngIf="successMessage">
-        {{ successMessage }}
+      <div class="success-message" *ngIf="profileSuccess">{{ profileSuccess }}</div>
+      <div class="error-message" *ngIf="profileError">{{ profileError }}</div>
+
+      <button type="submit" [disabled]="profileForm.invalid">Güncelle</button>
+    </form>
+  </div>
+
+  <div class="profile-card">
+    <h2><i class="fa-solid fa-lock"></i> Şifre Değiştir</h2>
+
+    <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+      <div class="form-group">
+        <label>Eski Şifre</label>
+        <input type="password" formControlName="oldPassword" placeholder="Eski şifreniz" />
+        <span class="error" *ngIf="passwordForm.get('oldPassword')?.invalid && passwordForm.get('oldPassword')?.touched">
+          Eski şifre gerekli
+        </span>
       </div>
 
-      <div class="error-message" *ngIf="errorMessage">
-        {{ errorMessage }}
+      <div class="form-group">
+        <label>Yeni Şifre</label>
+        <input type="password" formControlName="newPassword" placeholder="Yeni şifreniz" />
+        <div class="form-group">
+  <label>Yeni Şifre Tekrar</label>
+  <input type="password" formControlName="confirmPassword" placeholder="Yeni şifrenizi tekrar girin" />
+  <span class="error" *ngIf="passwordForm.get('confirmPassword')?.invalid && passwordForm.get('confirmPassword')?.touched">
+    Şifre tekrarı gerekli
+  </span>
+</div>
+        <span class="error" *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+          Şifre en az 8 karakter, büyük/küçük harf ve özel karakter içermeli (!@#$)
+        </span>
       </div>
 
-      <button type="submit" [disabled]="profileForm.invalid">
-        Güncelle
-      </button>
+      <div class="success-message" *ngIf="passwordSuccess">{{ passwordSuccess }}</div>
+      <div class="error-message" *ngIf="passwordError">{{ passwordError }}</div>
+
+      <button type="submit" [disabled]="passwordForm.invalid">Şifre Değiştir</button>
     </form>
   </div>
 </div>

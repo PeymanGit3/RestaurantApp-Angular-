@@ -1,5 +1,4 @@
 <div class="cart-container">
-  <h2>🛒 Sepetim</h2>
 
   <div class="loading" *ngIf="isLoading">Yükleniyor...</div>
 
@@ -11,11 +10,11 @@
   <div class="cart-content" *ngIf="!isLoading && cart.items.length > 0">
     <div class="cart-items">
       <div class="cart-item" *ngFor="let item of cart.items">
-        <img [src]="item.productImageUrl" [alt]="item.productName" />
+        <img [src]="item.product.image" [alt]="item.product.name" />
 
         <div class="item-info">
-          <h3>{{ item.productName }}</h3>
-          <p class="item-price">{{ item.price | currency:'TRY':'₺' }}</p>
+          <h3>{{ item.product.name }}</h3>
+          <p class="item-price">{{ item.product.price | currency:'USD':'$' }}</p>
         </div>
 
         <div class="quantity-controls">
@@ -25,7 +24,7 @@
         </div>
 
         <div class="item-total">
-          {{ item.totalPrice | currency:'TRY':'₺' }}
+          {{ item.product.price * item.quantity | currency:'USD':'$' }}
         </div>
 
         <button class="remove-btn" (click)="removeItem(item.id)">🗑️</button>
@@ -35,8 +34,12 @@
     <div class="cart-summary">
       <h3>Sipariş Özeti</h3>
       <div class="summary-row">
-        <span>Toplam</span>
-        <span>{{ cart.totalAmount | currency:'TRY':'₺' }}</span>
+        <span>Toplam Ürün</span>
+        <span>{{ cart.totalItems }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Toplam Fiyat</span>
+        <span>{{ cart.totalPrice | currency:'USD':'$' }}</span>
       </div>
       <button class="checkout-btn" (click)="checkout()">Siparişi Tamamla</button>
     </div>
