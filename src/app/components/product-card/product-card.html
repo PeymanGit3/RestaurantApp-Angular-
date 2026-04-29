@@ -7,6 +7,7 @@
   <div class="product-info">
     <h3>{{ product.name }}</h3>
     <p class="description">{{ product.description }}</p>
+    <p class="rate" *ngIf="product.rate">⭐ {{ product.rate }}</p>
     <p class="spiciness" *ngIf="product.spiciness > 0">{{ getSpiciness() }}</p>
 
     <div class="product-footer">
