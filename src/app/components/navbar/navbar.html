@@ -5,28 +5,28 @@
 
   <div class="navbar-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <button class="nav-btn"><i class="fa-solid fa-house"></i> Ana Sayfa</button>
+      <button class="nav-btn"><i class="fa-solid fa-house"></i> Home</button>
     </a>
     <a routerLink="/products" routerLinkActive="active">
-      <button class="nav-btn"><i class="fa-solid fa-bars"></i> Menü</button>
+      <button class="nav-btn"><i class="fa-solid fa-bars"></i> Menu</button>
     </a>
 
     <ng-container *ngIf="isLoggedIn; else guestLinks">
       <a routerLink="/cart" routerLinkActive="active">
-        <button class="nav-btn"><i class="fa-solid fa-cart-shopping"></i> Sepet</button>
+        <button class="nav-btn"><i class="fa-solid fa-cart-shopping"></i> Cart</button>
       </a>
       <a routerLink="/profile" routerLinkActive="active">
-        <button class="nav-btn"><i class="fa-solid fa-user"></i> Profil</button>
+        <button class="nav-btn"><i class="fa-solid fa-user"></i> Profile</button>
       </a>
-      <button class="nav-btn logout-btn" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i> Çıkış</button>
+      <button class="nav-btn logout-btn" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
     </ng-container>
 
     <ng-template #guestLinks>
       <a routerLink="/login" routerLinkActive="active">
-        <button class="nav-btn"><i class="fa-solid fa-right-to-bracket"></i> Giriş</button>
+        <button class="nav-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
       </a>
       <a routerLink="/register" routerLinkActive="active">
-        <button class="nav-btn"><i class="fa-solid fa-pen-to-square"></i> Kayıt Ol</button>
+        <button class="nav-btn"><i class="fa-solid fa-pen-to-square"></i> Sign Up</button>
       </a>
     </ng-template>
   </div>

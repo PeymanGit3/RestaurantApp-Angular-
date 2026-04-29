@@ -1,38 +1,38 @@
 <div class="products-container">
   <div class="filter-section">
-    <h3>Filtrele</h3>
+    <h3>Filter Products</h3>
 
     <input
       type="text"
       [(ngModel)]="filter.query"
-      placeholder="Ürün ara..."
+      placeholder="Search products..."
     />
 
     <select [(ngModel)]="filter.categoryId">
-      <option [ngValue]="undefined">Tüm Kategoriler</option>
+      <option [ngValue]="undefined">All Categories</option>
       <option *ngFor="let cat of categories" [value]="cat.id">
         {{ cat.name }}
       </option>
     </select>
 
     <div class="price-range">
-      <input type="number" [(ngModel)]="filter.minPrice" placeholder="Min Fiyat" />
-      <input type="number" [(ngModel)]="filter.maxPrice" placeholder="Max Fiyat" />
+      <input type="number" [(ngModel)]="filter.minPrice" placeholder="Min Price" />
+      <input type="number" [(ngModel)]="filter.maxPrice" placeholder="Max Price" />
     </div>
 
     <label class="vegetarian-check">
       <input type="checkbox" [(ngModel)]="filter.vegetarian" />
-      Vejetaryen
+      Vegetarian
     </label>
 
     <div class="filter-buttons">
-      <button class="btn-apply" (click)="applyFilter()">Filtrele</button>
-      <button class="btn-reset" (click)="resetFilter()">Sıfırla</button>
+      <button class="btn-apply" (click)="applyFilter()">Filter</button>
+      <button class="btn-reset" (click)="resetFilter()">Reset</button>
     </div>
   </div>
 
   <div class="products-section">
-    <div class="loading" *ngIf="isLoading">Yükleniyor...</div>
+    <div class="loading" *ngIf="isLoading">Loading...</div>
 
     <div class="products-grid" *ngIf="!isLoading">
       <app-product-card
@@ -43,13 +43,13 @@
     </div>
 
     <div class="no-products" *ngIf="!isLoading && products.length === 0">
-      Ürün bulunamadı!
+      No products found!
     </div>
 
     <div class="pagination" *ngIf="!isLoading && products.length > 0">
-      <button (click)="prevPage()" [disabled]="currentPage === 1">← Önceki</button>
-      <span>Sayfa {{ currentPage }}</span>
-      <button (click)="nextPage()" [disabled]="currentPage * take >= totalCount">Sonraki →</button>
+      <button (click)="prevPage()" [disabled]="currentPage === 1">← Previous</button>
+      <span>Page {{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage * take >= totalCount">Next →</button>
     </div>
   </div>
 </div>

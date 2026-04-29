@@ -1,22 +1,22 @@
 <div class="register-container">
   <div class="register-card">
-    <h2>Kayıt Ol</h2>
-    <p>Yeni hesap oluşturun</p>
+    <h2>Register</h2>
+    <p>Create a new account</p>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Ad</label>
-        <input type="text" formControlName="firstName" placeholder="Adınız" />
+        <label>First Name</label>
+        <input type="text" formControlName="firstName" placeholder="First name" />
         <span class="error" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
-          Ad gerekli
+          First name is required
         </span>
       </div>
 
       <div class="form-group">
-        <label>Soyad</label>
-        <input type="text" formControlName="lastName" placeholder="Soyadınız" />
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName" placeholder="Last name" />
         <span class="error" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
-          Soyad gerekli
+          Last name is required
         </span>
       </div>
 
@@ -24,15 +24,15 @@
         <label>Email</label>
         <input type="email" formControlName="email" placeholder="email@example.com" />
         <span class="error" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-          Geçerli bir email girin
+          Please enter a valid email address
         </span>
       </div>
 
       <div class="form-group">
-        <label>Şifre</label>
-        <input type="password" formControlName="password" placeholder="Şifreniz" />
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Your password" />
         <span class="error" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-          Şifre en az 6 karakter olmalı
+          Password must be at least 6 characters long
         </span>
       </div>
 
@@ -41,12 +41,12 @@
       </div>
 
       <button type="submit" [disabled]="isLoading">
-        {{ isLoading ? 'Kayıt yapılıyor...' : 'Kayıt Ol' }}
+        {{ isLoading ? 'Creating account...' : 'Register' }}
       </button>
     </form>
 
     <p class="login-link">
-      Zaten hesabınız var mı? <a routerLink="/login">Giriş Yap</a>
+      Already have an account? <a routerLink="/login">Login</a>
     </p>
   </div>
 </div>

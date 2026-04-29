@@ -1,23 +1,23 @@
 <div class="profile-container">
   <div class="profile-card">
-    <h2><i class="fa-solid fa-user"></i> Profilim</h2>
+    <h2><i class="fa-solid fa-user"></i> Profile</h2>
 
-    <div class="loading" *ngIf="isLoading">Yükleniyor...</div>
+    <div class="loading" *ngIf="isLoading">Loading...</div>
 
     <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()" *ngIf="!isLoading">
       <div class="form-group">
-        <label>Ad</label>
+        <label>First Name</label>
         <input type="text" formControlName="firstName" />
         <span class="error" *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched">
-          Ad gerekli
+          First name is required
         </span>
       </div>
 
       <div class="form-group">
-        <label>Soyad</label>
+        <label>Last Name</label>
         <input type="text" formControlName="lastName" />
         <span class="error" *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched">
-          Soyad gerekli
+          Last name is required
         </span>
       </div>
 
@@ -25,48 +25,48 @@
         <label>Email</label>
         <input type="email" formControlName="email" />
         <span class="error" *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
-          Geçerli bir email girin
+          Please enter a valid email address
         </span>
       </div>
 
       <div class="success-message" *ngIf="profileSuccess">{{ profileSuccess }}</div>
       <div class="error-message" *ngIf="profileError">{{ profileError }}</div>
 
-      <button type="submit" [disabled]="profileForm.invalid">Güncelle</button>
+      <button type="submit" [disabled]="profileForm.invalid">Update Profile</button>
     </form>
   </div>
 
   <div class="profile-card">
-    <h2><i class="fa-solid fa-lock"></i> Şifre Değiştir</h2>
+    <h2><i class="fa-solid fa-lock"></i> Change Password</h2>
 
     <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
       <div class="form-group">
-        <label>Eski Şifre</label>
-        <input type="password" formControlName="oldPassword" placeholder="Eski şifreniz" />
+        <label>Old Password</label>
+        <input type="password" formControlName="oldPassword" placeholder="Your old password" />
         <span class="error" *ngIf="passwordForm.get('oldPassword')?.invalid && passwordForm.get('oldPassword')?.touched">
-          Eski şifre gerekli
+          Old password is required
         </span>
       </div>
 
       <div class="form-group">
-        <label>Yeni Şifre</label>
-        <input type="password" formControlName="newPassword" placeholder="Yeni şifreniz" />
+        <label>New Password</label>
+        <input type="password" formControlName="newPassword" placeholder="Your new password" />
         <div class="form-group">
-  <label>Yeni Şifre Tekrar</label>
-  <input type="password" formControlName="confirmPassword" placeholder="Yeni şifrenizi tekrar girin" />
+  <label>Confirm New Password</label>
+  <input type="password" formControlName="confirmPassword" placeholder="Confirm your new password" />
   <span class="error" *ngIf="passwordForm.get('confirmPassword')?.invalid && passwordForm.get('confirmPassword')?.touched">
-    Şifre tekrarı gerekli
+    Please confirm your new password
   </span>
 </div>
         <span class="error" *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
-          Şifre en az 8 karakter, büyük/küçük harf ve özel karakter içermeli (!@#$)
+          Password must be at least 8 characters long and include uppercase, lowercase, and special characters (!@#$)
         </span>
       </div>
 
       <div class="success-message" *ngIf="passwordSuccess">{{ passwordSuccess }}</div>
       <div class="error-message" *ngIf="passwordError">{{ passwordError }}</div>
 
-      <button type="submit" [disabled]="passwordForm.invalid">Şifre Değiştir</button>
+      <button type="submit" [disabled]="passwordForm.invalid">Change Password</button>
     </form>
   </div>
 </div>

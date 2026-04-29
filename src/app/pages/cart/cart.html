@@ -1,10 +1,10 @@
 <div class="cart-container">
 
-  <div class="loading" *ngIf="isLoading">Yükleniyor...</div>
+  <div class="loading" *ngIf="isLoading">Loading...</div>
 
   <div class="empty-cart" *ngIf="!isLoading && cart.items.length === 0">
-    <p>Sepetiniz boş!</p>
-    <a routerLink="/products">Menüye Git</a>
+    <p>Your cart is empty!</p>
+    <a routerLink="/products">Go to Menu</a>
   </div>
 
   <div class="cart-content" *ngIf="!isLoading && cart.items.length > 0">
@@ -32,16 +32,16 @@
     </div>
 
     <div class="cart-summary">
-      <h3>Sipariş Özeti</h3>
+      <h3>Order Summary</h3>
       <div class="summary-row">
-        <span>Toplam Ürün</span>
+        <span>Total Items</span>
         <span>{{ cart.totalItems }}</span>
       </div>
       <div class="summary-row">
-        <span>Toplam Fiyat</span>
+        <span>Total Price</span>
         <span>{{ cart.totalPrice | currency:'USD':'$' }}</span>
       </div>
-      <button class="checkout-btn" (click)="checkout()">Siparişi Tamamla</button>
+      <button class="checkout-btn" (click)="checkout()">Complete Order</button>
     </div>
   </div>
 </div>

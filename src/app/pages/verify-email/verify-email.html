@@ -1,7 +1,7 @@
 <div class="verify-container">
   <div class="verify-card">
-    <h2>📧 Email Doğrulama</h2>
-    <p>Emailinize gelen doğrulama kodunu girin</p>
+    <h2><i class="fa-solid fa-envelope"></i> Email Verification</h2>
+    <p>Enter the verification code sent to your email</p>
 
     <form [formGroup]="verifyForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -12,19 +12,19 @@
           placeholder="email@example.com"
         />
         <span class="error" *ngIf="verifyForm.get('email')?.invalid && verifyForm.get('email')?.touched">
-          Geçerli bir email girin
+          Please enter a valid email address
         </span>
       </div>
 
       <div class="form-group">
-        <label>Doğrulama Kodu</label>
+        <label>Verification Code</label>
         <input
           type="text"
           formControlName="code"
-          placeholder="Emailinize gelen kod"
+          placeholder="Verification code sent to your email"
         />
         <span class="error" *ngIf="verifyForm.get('code')?.invalid && verifyForm.get('code')?.touched">
-          Kod gerekli
+          Verification code is required
         </span>
       </div>
 
@@ -37,7 +37,7 @@
       </div>
 
       <button type="submit" [disabled]="isLoading">
-        {{ isLoading ? 'Doğrulanıyor...' : 'Doğrula' }}
+        {{ isLoading ? 'Verifying...' : 'Verify Email' }}
       </button>
     </form>
   </div>
