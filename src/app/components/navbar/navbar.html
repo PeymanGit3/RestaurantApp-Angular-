@@ -3,7 +3,13 @@
     <a routerLink="/">BiteHub</a>
   </div>
 
-  <div class="navbar-links">
+<button class="hamburger" (click)="toggleMenu()" [class.open]="isMenuOpen">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+  <div class="navbar-links" [class.open]="isMenuOpen">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <button class="nav-btn"><i class="fa-solid fa-house"></i> Home</button>
     </a>
@@ -26,8 +32,9 @@
         <button class="nav-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
       </a>
       <a routerLink="/register" routerLinkActive="active">
-        <button class="nav-btn"><i class="fa-solid fa-pen-to-square"></i> Sign Up</button>
+        <button class="nav-btn btns"><i class="fa-solid fa-pen-to-square"></i> Sign Up</button>
       </a>
     </ng-template>
+    
   </div>
 </nav>

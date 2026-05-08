@@ -66,7 +66,7 @@ export class CartComponent implements OnInit {
   checkout(): void {
     this.cartService.checkout().subscribe({
       next: () => {
-        alert('Siparişiniz alındı!');
+        alert('Your order has been received!');
         this.router.navigate(['/products']);
       },
       error: (err) => console.error(err)

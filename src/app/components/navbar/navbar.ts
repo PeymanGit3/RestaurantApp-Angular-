@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth';
 
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -25,4 +26,14 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  isMenuOpen = false;
+
+toggleMenu(): void {
+  this.isMenuOpen = !this.isMenuOpen;
+}
+
+closeMenu(): void {
+  this.isMenuOpen = false;
+}
 }

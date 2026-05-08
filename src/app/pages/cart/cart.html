@@ -27,7 +27,7 @@
           {{ item.product.price * item.quantity | currency:'USD':'$' }}
         </div>
 
-        <button class="remove-btn" (click)="removeItem(item.id)">🗑️</button>
+        <button class="remove-btn" (click)="removeItem(item.id)"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>
 

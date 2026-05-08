@@ -89,8 +89,8 @@ loadProducts(): void {
 
   addToCart(productId: number): void {
     this.cartService.addToCart({ productId, quantity: 1 }).subscribe({
-      next: () => alert('Ürün sepete eklendi!'),
-      error: (err) => alert('Sepete eklemek için giriş yapın!')
+      next: () => alert('Product added to cart!'),
+      error: (err) => alert('Please log in to add items to your cart!')
     });
   }
 }

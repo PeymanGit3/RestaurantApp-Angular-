@@ -34,13 +34,13 @@ export class VerifyEmailComponent {
     this.isLoading = true;
     this.authService.verifyEmail(this.verifyForm.value).subscribe({
       next: () => {
-        this.successMessage = 'Email başarıyla doğrulandı!';
+        this.successMessage = 'Email verified successfully!';
         this.errorMessage = '';
         this.isLoading = false;
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: () => {
-        this.errorMessage = 'Doğrulama kodu hatalı!';
+        this.errorMessage = 'Invalid verification code!';
         this.successMessage = '';
         this.isLoading = false;
       }

@@ -35,13 +35,13 @@ export class ResetPasswordComponent {
 
     this.http.put('https://restaurantapi.stepacademy.ge/api/auth/reset-password', this.resetForm.value).subscribe({
       next: () => {
-        this.successMessage = 'Şifreniz başarıyla sıfırlandı!';
+        this.successMessage = 'Your password has been successfully reset!';
         this.errorMessage = '';
         this.isLoading = false;
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: () => {
-        this.errorMessage = 'Şifre sıfırlama başarısız! Token hatalı olabilir.';
+        this.errorMessage = 'Failed to reset password! The token might be invalid.';
         this.successMessage = '';
         this.isLoading = false;
       }
