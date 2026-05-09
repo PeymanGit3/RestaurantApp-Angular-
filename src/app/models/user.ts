@@ -5,6 +5,8 @@ export interface User {
   lastName: string;
   age?: number;
   address?: string;
+  phoneNumber?: string;
+  picture?: string;
 }
 
 export interface LoginRequest {

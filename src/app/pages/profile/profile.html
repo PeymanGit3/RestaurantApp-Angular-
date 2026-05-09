@@ -3,7 +3,16 @@
   <!-- Bilgi Kartı - Tam genişlik -->
   <div class="profile-info-card">
     <div class="profile-card info-card">
-      <h2>👤 My Profile</h2>
+      <div class="profile-avatar">
+  <img *ngIf="profileForm.get('picture')?.value; else placeholder" 
+       [src]="profileForm.get('picture')?.value" 
+       alt="Profile Picture" />
+  <ng-template #placeholder>
+    <div class="avatar-placeholder">
+      <i class="fa-solid fa-user"></i>
+    </div>
+  </ng-template>
+</div>
       <div class="loading" *ngIf="isLoading">Loading...</div>
       <div class="info-list" *ngIf="!isLoading">
         <div class="info-item">
@@ -39,7 +48,7 @@
     
     <!-- Sol: Edit Profile -->
     <div class="profile-card edit-card">
-      <h2>✏️ Edit Profile</h2>
+      <h2><i class="fa-solid fa-file-pen"></i> Edit Profile</h2>
       <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()" *ngIf="!isLoading">
         <div class="form-group">
           <label>First Name</label>

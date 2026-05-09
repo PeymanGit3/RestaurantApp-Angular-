@@ -69,32 +69,33 @@ loadProfile(): void {
   });
 }
 
-  onProfileSubmit(): void {
-    if (this.profileForm.invalid) return;
+onProfileSubmit(): void {
+  if (this.profileForm.invalid) return;
 
-    this.userService.editProfile(this.profileForm.value).subscribe({
-      next: () => {
-        this.profileSuccess = 'Profile updated successfully!';
-        this.profileError = '';
-      },
-      error: () => {
-        this.profileError = 'Failed to update profile!';
-        this.profileSuccess = '';
-      }
-    });
-  }
+  this.userService.editProfile(this.profileForm.value).subscribe({
+    next: () => {
+      this.profileSuccess = 'Profile updated successfully!';
+      this.profileError = '';
+      this.loadProfile();
+    },
+    error: () => {
+      this.profileError = 'Failed to update profile!';
+      this.profileSuccess = '';
+    }
+  });
+}
 
   onPasswordSubmit(): void {
     if (this.passwordForm.invalid) return;
 
     this.userService.changePassword(this.passwordForm.value).subscribe({
       next: () => {
-        this.passwordSuccess = 'Şifre başarıyla değiştirildi!';
+        this.passwordSuccess = 'Password successfully changed!';
         this.passwordError = '';
         this.passwordForm.reset();
       },
       error: () => {
-        this.passwordError = 'Şifre değiştirme başarısız!';
+        this.passwordError = 'Failed to change password!';
         this.passwordSuccess = '';
       }
     });
