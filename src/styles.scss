@@ -7,8 +7,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0f0f1a;
+font-family: 'Outfit', sans-serif;  background: #0f0f1a;
   min-height: 100vh;
   color: #333;
 }
@@ -21,4 +20,16 @@ html, body {
 app-root {
   display: block;
   padding-top: 70px;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit-Bold.ttf') format('truetype');
+  font-weight: 700;
 }
