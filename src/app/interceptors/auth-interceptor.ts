@@ -1,6 +1,7 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth';
+import { catchError, switchMap, throwError } from 'rxjs';
 
 const publicEndpoints = [
   '/api/auth/register',
@@ -25,5 +26,29 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   const clonedReq = req.clone({ headers });
-  return next(clonedReq);
-}
+
+  return next(clonedReq).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401 && !isPublic) {
+        return authService.refreshToken().pipe(
+          switchMap((response: any) => {
+            const newToken = response.data?.accessToken || response.accessToken;
+            localStorage.setItem('accessToken', newToken);
+
+            const retryHeaders = req.headers
+              .set('X-API-KEY', apiKey)
+              .set('Authorization', `Bearer ${newToken}`);
+
+            const retryReq = req.clone({ headers: retryHeaders });
+            return next(retryReq);
+          }),
+          catchError((refreshError) => {
+            authService.logout();
+            return throwError(() => refreshError);
+          })
+        );
+      }
+      return throwError(() => error);
+    })
+  );
+};

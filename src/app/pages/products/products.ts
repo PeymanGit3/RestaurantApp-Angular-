@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   totalCount = 0;
   currentPage = 1;
   take = 8;
+  hasMore = false;
 
   filter: ProductFilter = {
     page: 1,
@@ -47,9 +48,9 @@ loadCategories(): void {
 loadProducts(): void {
   this.isLoading = true;
   this.productService.filterProducts(this.filter).subscribe({
-    next: (data) => {
+    next: (data: any) => {
       this.products = data.data.products;
-      this.totalCount = data.data.totalCount || 0;
+      this.hasMore = data.data.hasMore;
       this.isLoading = false;
     },
     error: (err) => {
@@ -71,21 +72,21 @@ loadProducts(): void {
     this.loadProducts();
   }
 
-  nextPage(): void {
-    if (this.currentPage * this.take < this.totalCount) {
-      this.currentPage++;
-      this.filter.page = this.currentPage;
-      this.loadProducts();
-    }
+nextPage(): void {
+  if (this.hasMore) {
+    this.currentPage++;
+    this.filter.page = this.currentPage;
+    this.loadProducts();
   }
+}
 
-  prevPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.filter.page = this.currentPage;
-      this.loadProducts();
-    }
+prevPage(): void {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.filter.page = this.currentPage;
+    this.loadProducts();
   }
+}
 
   addToCart(productId: number): void {
     this.cartService.addToCart({ productId, quantity: 1 }).subscribe({

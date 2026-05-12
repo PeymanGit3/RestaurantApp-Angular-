@@ -31,6 +31,8 @@ export class ProductService {
     if (filter.categoryId !== undefined) params = params.set('CategoryId', filter.categoryId);
     if (filter.page !== undefined) params = params.set('Page', filter.page);
     if (filter.take !== undefined) params = params.set('Take', filter.take);
+    if (filter.rate !== undefined) params = params.set('Rate', filter.rate);
+
 
     return this.http.get<ProductResponse>(`${this.baseUrl}/products/filter`, { params });
   }

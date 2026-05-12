@@ -1,0 +1,60 @@
+<div class="product-detail-container">
+  <div class="loading" *ngIf="isLoading">Loading...</div>
+
+  <div class="product-detail" *ngIf="!isLoading && product">
+    <button class="back-btn" (click)="goBack()">
+      <i class="fa-solid fa-arrow-left"></i> Back to Menu
+    </button>
+
+    <div class="product-card-detail">
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.name" />
+        <span class="vegetarian-badge" *ngIf="product.vegeterian">🌱 Vegetarian</span>
+      </div>
+
+      <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p class="description">{{ product.description }}</p>
+
+        <div class="product-meta">
+          <div class="meta-item">
+            <span class="meta-label">⭐ Rating</span>
+            <span class="meta-value">{{ product.rate }}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">🌶️ Spiciness</span>
+            <span class="meta-value">{{ product.spiciness }}/5</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">🌱 Vegetarian</span>
+            <span class="meta-value">{{ product.vegeterian ? 'Yes' : 'No' }}</span>
+          </div>
+        </div>
+
+        <div class="ingredients" *ngIf="product.ingredients && product.ingredients.length > 0">
+          <h3>🥗 Ingredients</h3>
+          <ul>
+            <li *ngFor="let ingredient of product.ingredients">{{ ingredient }}</li>
+          </ul>
+        </div>
+
+        <div class="method" *ngIf="product.method">
+          <h3>👨‍🍳 Preparation</h3>
+          <p>{{ product.method }}</p>
+        </div>
+
+        <div class="product-footer">
+          <span class="price">{{ product.price | currency:'USD':'$' }}</span>
+          <button class="add-to-cart-btn" (click)="addToCart()">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="not-found" *ngIf="!isLoading && !product">
+    <p>Product not found!</p>
+    <button (click)="goBack()">Back to Menu</button>
+  </div>
+</div>

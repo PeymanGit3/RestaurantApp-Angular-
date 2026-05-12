@@ -9,12 +9,14 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password';
 import { authGuard } from './guards/auth-guard';
+import { ProductDetailComponent } from './pages/product-detail/product-detail';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent, canActivate: [authGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'verify-email', component: VerifyEmailComponent },
