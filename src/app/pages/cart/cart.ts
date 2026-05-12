@@ -25,18 +25,28 @@ export class CartComponent implements OnInit {
   }
 
   loadCart(): void {
-    this.isLoading = true;
-    this.cartService.getCart().subscribe({
-      next: (response) => {
-        this.cart = response.data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.isLoading = false;
-      }
-    });
-  }
+  this.cartService.getCart().subscribe({
+    next: (response) => {
+      this.cart = response.data;
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
+  // loadCart(): void {
+  //   this.isLoading = true;
+  //   this.cartService.getCart().subscribe({
+  //     next: (response) => {
+  //       this.cart = response.data;
+  //       this.isLoading = false;
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //       this.isLoading = false;
+  //     }
+  //   });
+  // }
 
   increaseQuantity(item: CartItem): void {
     this.cartService.editQuantity({ itemId: item.id, quantity: item.quantity + 1 }).subscribe({
